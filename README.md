@@ -51,6 +51,9 @@ Now, we have to tell passport which strategy to use inside our app.js file.
 
       passport.use('local', new localStrategy({ passReqToCallback : true, usernameField: 'username' },
          function(req, username, password, done) {
+         
+            //We will come back to complete this
+         
          }
       ));
 

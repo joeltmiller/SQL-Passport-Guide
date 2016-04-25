@@ -112,7 +112,7 @@ Then create the rest of the function for authenticating users. Serialize and des
                   console.log('match!')
                   done(null, user);
                 } else {
-       done(null, false, { message: 'Incorrect username and password.' });
+                  done(null, false, { message: 'Incorrect username and password.' });
                 }
                 
               });
@@ -233,15 +233,5 @@ This alone will do nothing, but if you do a call from the client (a GET request)
        res.json(req.isAuthenticated());
       });
 
-Once you’ve got users saving to the database, go look at their “password” field with Robomongo. When stored in the database, a bcrypt "hash" might look something like this:
-
-$2a$10$vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa
-
-2a identifies the bcrypt algorithm version that was used.
-10 is the cost factor; 210 iterations of the key derivation function are used (which is not enough, by the way. I'd recommend a cost of 12 or more.)
-vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa is the salt and the cipher text, concatenated and encoded in a modified Base-64. The first 22 characters decode to a 16-byte value for the salt. The remaining characters are cipher-text to be compared for authentication.
-‘$’ are used as delimiters for the header section of the hash.
-
-That’s it! You have users authenticating and you’re storing encrypted passwords! Have a sticker. (See next page)
-
+Once you’ve got users saving to the database, go to Postico and verify your data.
 

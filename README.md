@@ -8,7 +8,7 @@ Strategies are packaged as individual modules so you can choose which strategies
 
 Let’s add Passport to our application.
 
-npm install passport --save
+   npm install passport --save
 
 To use it, we need to require it in app.js (our main application file).
 

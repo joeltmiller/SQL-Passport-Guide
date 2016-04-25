@@ -67,29 +67,29 @@ Then create the rest of the function for authenticating users. Serialize and des
       });
       
       passport.deserializeUser(function(id, done) {
-      console.log('called deserializeUser');
-      pg.connect(connection, function (err, client) {
-      
-        var user = {};
-        console.log('called deserializeUser - pg');
-          var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
-      
-          query.on('row', function (row) {
-            console.log('User row', row);
-            user = row;
-            done(null, user);
-          });
-      
-          // After all data is returned, close connection and return results
-          query.on('end', function () {
-              client.end();
-          });
-      
-          // Handle Errors
-          if (err) {
-              console.log(err);
-          }
-      });
+            console.log('called deserializeUser');
+            pg.connect(connection, function (err, client) {
+            
+              var user = {};
+              console.log('called deserializeUser - pg');
+                var query = client.query("SELECT * FROM users WHERE id = $1", [id]);
+            
+                query.on('row', function (row) {
+                  console.log('User row', row);
+                  user = row;
+                  done(null, user);
+                });
+            
+                // After all data is returned, close connection and return results
+                query.on('end', function () {
+                    client.end();
+                });
+            
+                // Handle Errors
+                if (err) {
+                    console.log(err);
+                }
+            });
       
       });
       

@@ -1,6 +1,6 @@
 #Passport
 
-Passport is authentication middleware for Node.js. 
+[Passport](http://passportjs.org/docs) is authentication middleware for Node.js. 
 
 It’s extremely flexible and modular and can be dropped in to any Express-based web application, and can authenticate users via many different authentication mechanisms called “strategies”.
 

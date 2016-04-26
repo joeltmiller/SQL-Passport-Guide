@@ -229,6 +229,7 @@ Add a register route to server.js:
       app.use('/register', register);
 
 Finally, let’s test user.isAuthenticated() in the users.js route
+
 //Note: you will need to create this route, so in your routes file, create a users.js file, inside of it, you will need to include:
 
       var express = require('express');

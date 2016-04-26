@@ -38,7 +38,7 @@ Let’s add Passport-Local to our application:
 
       npm install passport-local --save
 
-To use it, we need to require it in app.js, and get a reference to the module’s strategy object.
+To use it, we need to require it in server.js, and get a reference to the module’s strategy object.
 
       var localStrategy = require('passport-local').Strategy;
 
@@ -47,7 +47,7 @@ We need to initialize passport:
       app.use(passport.initialize());
       app.use(passport.session());
 
-Now, we have to tell passport which strategy to use inside our app.js file. 
+Now, we have to tell passport which strategy to use inside our server.js file. 
 
       passport.use('local', new localStrategy({ passReqToCallback : true, usernameField: 'username' },
          function(req, username, password, done) {
@@ -122,8 +122,8 @@ Then create the rest of the function for authenticating users. Serialize and des
       
               // After all data is returned, close connection and return results
               query.on('end', function () {
-                  // client.end();
-                  // return res.json(results);
+                  client.end();
+                  res.send(results);
               });
       
               // Handle Errors
@@ -190,7 +190,7 @@ We also need a way for users to register. Create a register.html file with the f
          </div>
       </form>
 
-Also create a register.js route file. Remember, the pre-save function will encrypt the passwords for us!
+Also create a register.js route file.
 
       var express = require('express');
       var router = express.Router();
@@ -203,12 +203,20 @@ Also create a register.js route file. Remember, the pre-save function will encry
       });
       
       router.post('/', function(req,res,next) {
-         Users.create(req.body, function (err, post) {
-             if (err)
-                 next(err);
-             else
-                 res.redirect('/users');
-         })
+        pg.connect(connectionString, function(err, client){
+      
+          var query = client.query('INSERT INTO users (username, password) VALUES ($1, $2)', [request.body.nameuser, request.body.wordpass]);
+      
+          query.on('error', function(err){
+            console.log(err);
+          })
+      
+          query.on('end', function(){
+            response.sendStatus(200);
+            client.end();
+          })
+      
+        })
       });
       
       module.exports = router;

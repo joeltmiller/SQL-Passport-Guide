@@ -10,7 +10,7 @@ Let’s add Passport to our application.
 
       npm install passport --save
 
-To use it, we need to require it in app.js (our main application file).
+To use it, we need to require it in server.js (our main application file).
 
       var passport = require('passport');
 

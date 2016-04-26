@@ -41,7 +41,7 @@ To use it, we need to require it in server.js, and get a reference to the module
 
       var localStrategy = require('passport-local').Strategy;
 
-We need to initialize passport:
+We need to initialize passport (this should be below the session statement above):
 
       app.use(passport.initialize());
       app.use(passport.session());
@@ -159,7 +159,7 @@ Create a route for the new index file. Passport.authenticate is specifying our â
       var path = require('path');
       
       router.get("/", function(req,res,next){
-         res.sendFile(path.resolve(__dirname, '../views/index.html'));
+         res.sendFile(path.join(__dirname, '../views/index.html'));
       });
       
       router.post('/',
@@ -201,7 +201,7 @@ Also create a register.js route file.
       router.post('/', function(req,res,next) {
         pg.connect(connectionString, function(err, client){
       
-          var query = client.query('INSERT INTO users (username, password) VALUES ($1, $2)', [request.body.nameuser, request.body.wordpass]);
+          var query = client.query('INSERT INTO users (username, password) VALUES ($1, $2)', [request.body.username, request.body.password]);
       
           query.on('error', function(err){
             console.log(err);

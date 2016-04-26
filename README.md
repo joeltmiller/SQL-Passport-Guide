@@ -92,6 +92,8 @@ Then create the rest of the function for authenticating users. Serialize and des
       
       });
       
+Now return to your localStrategy that we previously started (with comment).  
+      
       passport.use('local', new localStrategy({
              passReqToCallback : true,
              usernameField: 'username'

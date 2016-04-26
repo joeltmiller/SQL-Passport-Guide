@@ -168,9 +168,6 @@ Create a route for the new index file. Passport.authenticate is specifying our â
              failureRedirect: '/'
          })
       );
-//Note: Users at this point should point to an HTML file. So an example would be, 
-successRedirect: "/assets/views/users.html",
-This would mean that you actually need to create this page to be served back to the client side.
 
       module.exports = router;
 
@@ -196,7 +193,6 @@ Also create a register.js route file.
       var router = express.Router();
       var passport = require('passport');
       var path = require('path');
-      var Users = require('../models/user');
       
       router.get('/', function(req, res, next){
          res.sendFile(path.resolve(__dirname, '../views/register.html'));

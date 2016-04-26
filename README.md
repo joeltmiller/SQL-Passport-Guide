@@ -124,7 +124,6 @@ Now return to your localStrategy that we previously started (with comment).
               // After all data is returned, close connection and return results
               query.on('end', function () {
                   client.end();
-                  res.send(results);
               });
       
               // Handle Errors

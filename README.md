@@ -220,7 +220,7 @@ Also create a register.js route file.
       
       module.exports = router;
 
-Add a register route to app.js:
+Add a register route to server.js:
 
       var register = require('./routes/register');
       

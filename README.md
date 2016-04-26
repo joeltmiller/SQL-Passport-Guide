@@ -236,14 +236,14 @@ Finally, let’s test user.isAuthenticated() in the users.js route
       var router = express.Router();
       
       router.get('/', function(req, res, next) {
-         res.json(req.isAuthenticated());
+         res.send(req.isAuthenticated());
       });
       
       module.exports = router;
 This alone will do nothing, but if you do a call from the client (a GET request) to the ‘/users’ route, and then console log out the response in the success callback function, you will see what the server sends back for whether or not the user is authenticated. 
 
       router.get('/', function(req, res, next) {
-       res.json(req.isAuthenticated());
+       res.send(req.isAuthenticated());
       });
 
 Once you’ve got users saving to the database, go to Postico and verify your data.
